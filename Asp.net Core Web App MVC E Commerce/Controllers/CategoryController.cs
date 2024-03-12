@@ -17,7 +17,7 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Controllers
         {
             List<Category> categories = _db.Category.ToList();
 
-            return View();
+            return View(categories);
         }
     }
 }
