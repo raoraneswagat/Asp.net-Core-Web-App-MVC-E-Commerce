@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Asp.net_Core_Web_App_MVC_E_Commerce.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Asp.net_Core_Web_App_MVC_E_Commerce.Data
 {
@@ -8,5 +9,9 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Data
         {
 
         }
+
+        public DbSet<Category> Category { get; set; }
+
+
     }
 }
