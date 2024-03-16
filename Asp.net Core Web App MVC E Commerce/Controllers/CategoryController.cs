@@ -19,5 +19,10 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Controllers
 
             return View(categories);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
