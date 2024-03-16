@@ -26,17 +26,22 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Category obj){
+        public IActionResult Create(Category obj)
+        {
 
-            if(ModelState.IsValid)
+            if (obj.Name == obj.DisplayOrder.ToString())
             {
-            _db.Category.Add(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+                ModelState.AddModelError("Name", "The DisplayOrder cannot exactly match the Name");
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Category.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
             }
             return View();
-            
-            
+
+
         }
 
     }
