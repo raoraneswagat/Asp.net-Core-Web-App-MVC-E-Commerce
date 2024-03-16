@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Asp.net_Core_Web_App_MVC_E_Commerce.Models
 {
@@ -7,7 +8,9 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [DisplayName("Category Name")]
         public string Name { get; set; }
+        [DisplayName("Display Order")]
         public int DisplayOrder { get; set; }
     }
 }
