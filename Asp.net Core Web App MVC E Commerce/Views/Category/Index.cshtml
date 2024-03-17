@@ -1,8 +1,5 @@
 ﻿@model List<Category>
-@if(TempData["Success"] != null)
-{
-    <h1>@TempData["Success"]</h1>
-}
+<partial name="_Notification"></partial>
 
 <div class="Container">
     <div class="row">
