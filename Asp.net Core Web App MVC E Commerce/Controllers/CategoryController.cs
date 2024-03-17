@@ -37,6 +37,7 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Controllers
             {
                 _db.Category.Add(obj);
                 _db.SaveChanges();
+                TempData["Success"] = "Category Added Successfully!";
                 return RedirectToAction("Index");
             }
             return View();
@@ -75,6 +76,7 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Controllers
             {
                 _db.Category.Update(obj);
                 _db.SaveChanges();
+                TempData["Success"] = "Category Updated Successfully!";
                 return RedirectToAction("Index");
             }
             return View();
@@ -113,7 +115,7 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Controllers
 
             _db.Category.Remove(category);
             _db.SaveChanges();
-
+            TempData["Success"] = "Category Deleted Successfully!";
             return RedirectToAction("Index");
 
 
