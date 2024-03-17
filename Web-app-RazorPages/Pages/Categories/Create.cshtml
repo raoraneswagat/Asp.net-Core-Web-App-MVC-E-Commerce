@@ -1,0 +1,42 @@
+﻿@page
+@model MyApp.Namespace.CreateModel
+
+
+<form method="post">
+
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Category</h2>
+        </div>
+        <div asp-validation-summary="All"></div>
+        <div class="row p-1">
+            <label asp-for="category.Name" class="p-0"></label>
+            <input asp-for="category.Name" type="text" class="form-control" />
+            <span asp-validation-for="category.Name" class="text-danger" ></span>
+        </div>
+        <div class="row p-1">
+            <label asp-for="category.DisplayOrder" class="p-0"></label>
+            <input asp-for="category.DisplayOrder" type="text" class="form-control" />
+            <span asp-validation-for="category.DisplayOrder" class="text-danger"></span>
+        </div>
+        <div class="row p-1">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Create</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Category" asp-action="Index" class="btn btn-secondary border form-control">Back To
+                    List</a>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}
