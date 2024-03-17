@@ -44,5 +44,43 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Controllers
 
         }
 
+        public IActionResult Edit(int? Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+
+            Category category = _db.Category.Find(Id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+            // _db.Category.FirstOrDefault(c=>c.Id==Id);
+            // _db.Category.Where(w=>w.Id==Id).FirstOrDefault();
+
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Category obj)
+        {
+
+            // if (obj.Name == obj.DisplayOrder.ToString())
+            // {
+            //     ModelState.AddModelError("Name", "The DisplayOrder cannot exactly match the Name");
+            // }
+            if (ModelState.IsValid)
+            {
+                _db.Category.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+
+
+        }
+
     }
 }
