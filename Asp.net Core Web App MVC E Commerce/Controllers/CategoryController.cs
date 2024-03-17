@@ -51,7 +51,7 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Controllers
                 return NotFound();
             }
 
-            Category category = _db.Category.Find(Id);
+            Category? category = _db.Category.Find(Id);
 
             if (category == null)
             {
@@ -78,6 +78,43 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+
+
+        }
+
+        public IActionResult Delete(int? Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            Category category = _db.Category.Find(Id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+            // _db.Category.FirstOrDefault(c=>c.Id==Id);
+            // _db.Category.Where(w=>w.Id==Id).FirstOrDefault();
+
+            return View(category);
+
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeletePost(int? Id)
+        {
+
+            Category? category = _db.Category.Find(Id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            _db.Category.Remove(category);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
 
 
         }
