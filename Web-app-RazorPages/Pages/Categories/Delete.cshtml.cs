@@ -17,20 +17,20 @@ namespace MyApp.Namespace
         }
         public void OnGet(int? id)
         {
-            if(id!=null && id!=0)
+            if (id != null && id != 0)
             {
-                category  = _db.Category.Find(id);
+                category = _db.Category.Find(id);
 
             }
         }
 
         public IActionResult OnPost(int? id)
         {
-            if(id!=null && id!=0)
+            if (id != null && id != 0)
             {
                 _db.Category.Remove(category);
                 _db.SaveChanges();
-
+                TempData["Success"] = "Category Deleted Successfully!";
                 return RedirectToPage("Index");
 
             }

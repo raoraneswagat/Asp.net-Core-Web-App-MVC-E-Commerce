@@ -32,7 +32,7 @@ namespace MyApp.Namespace
             {
                 _db.Category.Update(category);
                 _db.SaveChanges();
-
+                TempData["Success"] = "Category Updated Successfully!";
                 return RedirectToPage("Index");
             }
             else
