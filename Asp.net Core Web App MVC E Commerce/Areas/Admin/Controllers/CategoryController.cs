@@ -2,8 +2,9 @@
 using DataAccess;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Asp.net_Core_Web_App_MVC_E_Commerce.Controllers
+namespace Asp.net_Core_Web_App_MVC_E_Commerce.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         //private ApplicationDbContext _db;
