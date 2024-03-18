@@ -17,20 +17,21 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> products = _unitOfWork.Product.GetAll().ToList();
-           
+
 
             return View(products);
         }
 
         public IActionResult Create()
         {
-             IEnumerable<SelectListItem> categories = _unitOfWork.Category.GetAll().Select(c => new SelectListItem
+            IEnumerable<SelectListItem> categories = _unitOfWork.Category.GetAll().Select(c => new SelectListItem
             {
                 Text = c.Name,
                 Value = c.Id.ToString()
 
             });
-            ViewBag.CategoryList = categories;
+            //ViewBag.CategoryList = categories;
+            ViewData["CategoryList"] = categories;
             return View();
         }
 
