@@ -2,6 +2,7 @@
 using DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Models.ViewModels;
 
 namespace Asp.net_Core_Web_App_MVC_E_Commerce.Areas.Admin.Controllers
 {
@@ -31,12 +32,19 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Areas.Admin.Controllers
 
             });
             //ViewBag.CategoryList = categories;
-            ViewData["CategoryList"] = categories;
-            return View();
+            //ViewData["CategoryList"] = categories;
+
+            ProductVM productVM = new()
+            {
+                CategoryList = categories,
+                Product = new Product()
+            };
+
+            return View(productVM);
         }
 
         [HttpPost]
-        public IActionResult Create(Product obj)
+        public IActionResult Create(ProductVM productVM)
         {
 
             // if (obj.Name == obj.DisplayOrder.ToString())
@@ -45,12 +53,21 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Areas.Admin.Controllers
             // }
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Add(obj);
+                _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
                 TempData["Success"] = "Product Added Successfully!";
                 return RedirectToAction("Index");
             }
-            return View();
+            {
+                productVM.CategoryList = _unitOfWork.Category.GetAll().Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.Id.ToString()
+
+            });
+            return View(productVM);
+            }
+            
 
 
         }
