@@ -1,6 +1,7 @@
 ﻿using Models;
 using DataAccess;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Asp.net_Core_Web_App_MVC_E_Commerce.Areas.Admin.Controllers
 {
@@ -16,6 +17,12 @@ namespace Asp.net_Core_Web_App_MVC_E_Commerce.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> products = _unitOfWork.Product.GetAll().ToList();
+            IEnumerable<SelectListItem> categories = _unitOfWork.Category.GetAll().Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.Id.ToString()
+
+            });
 
             return View(products);
         }
